@@ -68,7 +68,7 @@ public class Company implements Serializable {
     System.out.println("Please select a location: ");
     for (Location indivLocation : locations) {
       System.out.print(i + ": ");
-      indivLocation.getName();
+      System.out.println(indivLocation.getName());
       i++;
     }//end for each
     Scanner locationNumberScan = new Scanner(System.in);
@@ -170,7 +170,8 @@ public class Company implements Serializable {
       System.out.println("Welcome admin. Please select an option from the menu below.");
       System.out.println("0: Manage Employees");
       System.out.println("1: Manage Inventory");
-      System.out.println("2: Log Out");
+      System.out.println("2: Manage Locations");
+      System.out.println("3: Log Out");
       Scanner adminChoiceScan = new Scanner(System.in);
       String adminChoiceStr = adminChoiceScan.nextLine();
       //start menu conditionals
@@ -179,6 +180,8 @@ public class Company implements Serializable {
       } else if (adminChoiceStr.equals("1")) {
         manageInventoryMenu();
       } else if (adminChoiceStr.equals("2")) {
+        manageLocationMenu();
+      } else if (adminChoiceStr.equals("3")) {
         System.out.println("Goodbye!");
         setAdminUserFalse();
         saveData();
@@ -218,6 +221,35 @@ public class Company implements Serializable {
     }//end while loop- employee menu
   }//end manageEmployeesMenu
   
+  public void manageLocationMenu() {
+    boolean keepGoingManageLocations = true;
+    while (keepGoingManageLocations) {
+      System.out.println("Location Management Menu");
+      System.out.println("Please select an option from the menu below");
+      System.out.println("0: Add new location");
+      System.out.println("1: Delete location");
+      System.out.println("2: List location");
+      System.out.println("3: Back");
+      Scanner choiceLocationManagementScan = new Scanner(System.in);
+      String choiceLocationManagementStr = choiceLocationManagementScan.nextLine();
+      if (choiceLocationManagementStr.equals("0")) {
+        addLocation();
+      } else if (choiceLocationManagementStr.equals("1")) {
+        deleteLocation();
+      } else if (choiceLocationManagementStr.equals("2")) {
+        int i = 0;
+        for (Location indivLocation : locations) {
+          System.out.println(i + ": " + indivLocation.getName());
+          i++;
+        }//end for each loop printing all locations
+      } else if (choiceLocationManagementStr.equals("3")) {
+        keepGoingManageLocations = false;
+      } else {
+        System.out.println("Command not recognized. Please try again.");
+      }//end conditionals- location management
+    }//end while keepGoingManageLocations
+  }//end manageLocationMenu
+  
   public void manageInventoryMenu() { //admin menu to add, remove, edit, or list vehicles
     boolean keepGoingManageInventory = true;
     while (keepGoingManageInventory) {
@@ -251,6 +283,8 @@ public class Company implements Serializable {
   
   public void listCustomers() {
     int i = 0;
+    System.out.println("Customer Listing");
+    System.out.println("Last, First");
     for (Customer indivCustomer : customers) {
       System.out.print(i + ": ");
       System.out.println(indivCustomer.getFullName());
@@ -298,6 +332,7 @@ public class Company implements Serializable {
       System.out.println("0. Add customer");
       System.out.println("1. Delete customer");
       System.out.println("2. List all customers");
+      System.out.println("3. Back");
       Scanner customerMenuScan = new Scanner(System.in);
       String customerChoiceStr = customerMenuScan.nextLine();
       if (customerChoiceStr.equals("0")) {
@@ -306,6 +341,8 @@ public class Company implements Serializable {
         deleteCustomer();
       } else if (customerChoiceStr.equals("2")) {
         listCustomers();
+      } else if (customerChoiceStr.equals("3")) {
+        keepGoingCustomerMenu = false;
       } else {
         System.out.println("I'm sorry, I don't recognize that command.");
       }//end conditionals- customer menu selection
@@ -373,10 +410,10 @@ public class Company implements Serializable {
       Scanner transactionChoiceScan = new Scanner(System.in);
       String transactionChoiceStr = transactionChoiceScan.nextLine();
       if (transactionChoiceStr.equals("0")) {
-        transactionMenu("in");
+        transactionMenu("out");
         keepGoingMakeTransaction = false;
       } else if (transactionChoiceStr.equals("1")) {
-        transactionMenu("out");
+        transactionMenu("in");
         keepGoingMakeTransaction = false;
       } else {
         System.out.println("I'm sorry, I don't recognize that command.");
@@ -715,4 +752,3 @@ public class Company implements Serializable {
     company.mainMenu();
   }//end Main
 }//end Company
-

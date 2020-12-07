@@ -92,8 +92,9 @@ public class Location extends Company implements Serializable {
     int i = 0;
     //for each loop to system.out each vehicle on lot
     for (Vehicle vehicle : vehiclesOnLot) {
-      System.out.println(i + vehicle.getYear() + " " + vehicle.getMake() 
+      System.out.println(i + ": " + vehicle.getYear() + " " + vehicle.getMake() 
       + " " + vehicle.getModel());
+      i++;
     }//end for
   }//end listAvailableVehicles
   
@@ -101,8 +102,9 @@ public class Location extends Company implements Serializable {
     int i = 0;
     //for each loop to system.out each vehicle currently on loan
     for (Vehicle vehicle : vehiclesOnLoan) {
-      System.out.println(i + vehicle.getYear() + " " + vehicle.getMake() 
+      System.out.println(i + ": " + vehicle.getYear() + " " + vehicle.getMake() 
       + " " + vehicle.getModel());
+      i++;
     }//end for
   }//end listRentedVehicles
   
