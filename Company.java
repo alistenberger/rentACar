@@ -123,6 +123,7 @@ public class Company implements Serializable {
               //evaluates the supplied credentials against each employee's credentials
               //if there's a match, set the isValidCredential to true and break the loop
               isValidCredential = true;
+              setUser(indivEmployee);
               break;
             }//end employee username and password eval
           }//end nested for each evaluating individual employees credentials
@@ -350,7 +351,25 @@ public class Company implements Serializable {
     //add, delete, or edit customers
     saveData();
   }//end customerManagementMenu
-  
+ 
+  public void logTransaction(String typeTransaction, Vehicle transactionVehicle, Customer transactionCustomer) {
+    try {
+      FileWriter outFile = new FileWriter("transactions.txt", true);
+      PrintWriter transaction = new PrintWriter(outFile);
+      transaction.println("**************NEW TRANSACTION***************");
+      transaction.println("Transaction Type: " + typeTransaction);
+      transaction.println("Employee: " + user.getUserName());
+      transaction.println("Vehicle: " + transactionVehicle.listFullName());
+      transaction.println("Customer: " + transactionCustomer.getFullName());
+      transaction.println("**************END TRANSACTION***************");
+      transaction.println("");
+      outFile.close();
+      transaction.close();
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }//end try
+  }//end logTransaction
+
   public void transactionMenu(String typeTransaction) {
     //for transaction assigning vehicle to customer
     if (typeTransaction.equals("out")) {
@@ -377,6 +396,7 @@ public class Company implements Serializable {
       transactionCustomer.setVehicleRented(transactionVehicle);
       transactionVehicle.setCheckedOutBy(transactionCustomer);
       saveData();
+      logTransaction(typeTransaction, transactionVehicle, transactionCustomer);
     } else if (typeTransaction.equals("in")) { 
       //for customer returning vehicle
       Location transactionLocation = getLocation();
@@ -398,6 +418,7 @@ public class Company implements Serializable {
       transactionLocation.getVehiclesOnLot().add(transactionVehicle);
       System.out.println("Transaction Completed.");
       saveData();
+      logTransaction(typeTransaction, transactionVehicle, transactionCustomer);
     }//end transaction evaluation
   }//end transactionMenu
   
@@ -440,6 +461,7 @@ public class Company implements Serializable {
       } else if (employeeChoiceStr.equals("2")) {
         transactionSubMenu();
       } else if (employeeChoiceStr.equals("3")) {
+        setUser(null);
         System.out.println("Goodbye!");
         keepGoingEmployeeMenu = false;
       } else {
@@ -840,9 +862,6 @@ public class Company implements Serializable {
   public static void main(String[] args) {
     Company company = new Company();
     company.loadData();
-    Location flagshipStore = new Location();
-    flagshipStore.setName("Flagship Store");
-    company.locations.add(flagshipStore);
     company.mainMenu();
   }//end Main
 }//end Company

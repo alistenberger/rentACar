@@ -1,0 +1,21 @@
+**************NEW TRANSACTION***************
+Transaction Type: in
+Employee: alistenberger
+Vehicle: 2015 Nissan Rogue
+Customer: Customerton, George
+**************END TRANSACTION***************
+
+**************NEW TRANSACTION***************
+Transaction Type: out
+Employee: alistenberger
+Vehicle: 2010 Dodge Challenger
+Customer: McCustomer, 0
+**************END TRANSACTION***************
+
+**************NEW TRANSACTION***************
+Transaction Type: in
+Employee: alistenberger
+Vehicle: 2010 Dodge Challenger
+Customer: McCustomer, 0
+**************END TRANSACTION***************
+
