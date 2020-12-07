@@ -83,9 +83,14 @@ public class Location extends Company implements Serializable {
   
   public void listEmployees() {
     //for each loop to system.out each employee in employees.getName()
+    int i = 0;
+    System.out.println("");
+    System.out.println("Location: " + getName());
     for (Employee employee : employees) {
-      System.out.println(employee.getLName() +", " + employee.getFName());
+      System.out.println(i + ": " + employee.getLName() +", " + employee.getFName());
+      i++;
     } //end for loop
+    System.out.println("");
   }//end listEmployees
   
   public void listAvailableVehicles() {

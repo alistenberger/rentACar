@@ -468,6 +468,7 @@ public class Company implements Serializable {
     saveData();
   }//end addEmployee
   
+/* removed to test new delete function
   public void deleteEmployee() {
     //Need a type of lookup to find employee to delete.
     //either have to choose location first then access employee arraylist
@@ -478,35 +479,70 @@ public class Company implements Serializable {
     Scanner searchTermScan = new Scanner(System.in);
     String searchTerm = searchTermScan.nextLine();
     for (Location indivLocation : locations) {
-      if (indivLocation.getEmployees().contains(searchTerm)) {
-        tempLocation = locations.get(i);
-        int deleteIndex = indivLocation.getEmployees().indexOf(searchTerm);
-        Employee tempEmployee = tempLocation.getEmployees().get(deleteIndex);
-        System.out.println(searchTerm +" found at " + tempLocation.getName());
-        System.out.println("Is " + tempEmployee.getLastName() + ", " + tempEmployee.getFirstName() +
-        " who you were looking for? (Y/N)");
-        Scanner userChoiceDeleteScan = new Scanner(System.in);
-        String userChoiceDeleteStr = userChoiceDeleteScan.nextLine();
-        if (userChoiceDeleteStr.toUpperCase().equals("Y")) {
-          System.out.println("User: " + tempEmployee.getLName() + ", " + tempEmployee.getFName() +
-          " will be deleted.");
-          tempLocation.getEmployees().remove(deleteIndex);
-          System.out.println("User deleted");
-        } else if (userChoiceDeleteStr.toUpperCase().equals("N")) {
-          System.out.println(searchTerm + " returned inadequate results, please try another term.");
+      int j = 0;
+      for (Employee indivEmployee : indivLocation.getEmployees()) {
+        if (indivEmployee.getUserName().contains(searchTerm) || indivEmployee.getLName().contains(searchTerm) || indivEmployee.getFName().contains(searchTerm)) {
+          tempLocation = locations.get(i);
+          int deleteIndex = j;
+          Employee tempEmployee = tempLocation.getEmployees().get(deleteIndex);
+          System.out.println(searchTerm +" found at " + tempLocation.getName());
+          System.out.println("Is " + tempEmployee.getLastName() + ", " + tempEmployee.getFirstName() +
+          " who you were looking for? (Y/N)");
+          Scanner userChoiceDeleteScan = new Scanner(System.in);
+          String userChoiceDeleteStr = userChoiceDeleteScan.nextLine();
+          if (userChoiceDeleteStr.toUpperCase().equals("Y")) {
+            System.out.println("User: " + tempEmployee.getLName() + ", " + tempEmployee.getFName() +
+            " will be deleted.");
+            tempLocation.getEmployees().remove(deleteIndex);
+            System.out.println("User deleted");
+          } else if (userChoiceDeleteStr.toUpperCase().equals("N")) {
+            System.out.println(searchTerm + " returned inadequate results, please try another term.");
+          } else {
+            System.out.println("I'm sorry, I don't recognize that command.");
+          } //end delete conditionals
         } else {
-          System.out.println("I'm sorry, I don't recognize that command.");
-        } //end delete conditionals
-      } else {
-        System.out.println(searchTerm + " not found at " + indivLocation.getName());
-        i++;
-        System.out.println("Searching at: " + locations.get(i).getName());
-      }//end conditionals
-    }//end for
+          j++;
+        }//end conditionals
+      }//end for each loop iterating through employees arraylist
+    }//end for each loop iterating through locations arraylist
     saveData();
   }//end deleteEmployee
-  
+  */
+
+  public void deleteEmployee() {
+    System.out.println("Employee deletion menu");
+    System.out.println("Please select the location the employee works at");
+    Location tempLocation = getLocation();
+    System.out.println("Please select the employee you wish to delete");
+    tempLocation.listEmployees();
+    Scanner employeeDeletionScan = new Scanner(System.in);
+    if (employeeDeletionScan.hasNextInt()) {
+      int employeeDeletionInt = employeeDeletionScan.nextInt();
+      System.out.println("Employee: " + tempLocation.getEmployees().get(employeeDeletionInt).getFullName() + " will be deleted, proceed? (Y/N)");
+      Scanner finalDeletionScan = new Scanner(System.in);
+      if (finalDeletionScan.hasNextLine()) {
+        String finalDeletionStr = finalDeletionScan.nextLine();
+        if (finalDeletionStr.toUpperCase().equals("Y")) {
+          tempLocation.getEmployees().remove(employeeDeletionInt);
+          System.out.println("Employee deleted");
+        } else if (finalDeletionStr.toUpperCase().equals("N")) {
+          System.out.println("Employee will not be deleted.");
+        } else {
+          System.out.println("I'm sorry, that is not a recognized command. Please try again.");
+        }//end final deletion conditionals
+      } else {
+        System.out.println("That is not a valid input. Please try again.");
+      }//end string check on finalDeletionScan
+    } else {
+      System.out.println("That is not a valid input, please try again");
+    }//end integer check on employeeDeletionScan
+    saveData();
+  }//end deleteEmployee
+
   public Address createAddress() {
+    System.out.println("");
+    System.out.println("You are now creating a new address.");
+    System.out.println("");
     System.out.print("Address Line 1: ");
     Scanner addressLine1Scan = new Scanner(System.in);
     String addressLine1Str = addressLine1Scan.nextLine();
@@ -532,6 +568,7 @@ public class Company implements Serializable {
   }//end createAddress
   
   public Date createDate() {
+    System.out.println("");
     System.out.println("You are creating a date instance. Use integers only.");
     System.out.println("For instance: for January 1st 1900 you would input 1, 1, and 1900");
     System.out.print("Month: ");
@@ -552,6 +589,9 @@ public class Company implements Serializable {
   
   public Vehicle createVehicle() {
     Vehicle tempVehicle = new Vehicle();
+    System.out.println("");
+    System.out.println("You are now creating a new vehicle");
+    System.out.println("");
     System.out.println("How many doors does the vehicle have?");
     Scanner numDoorsScan = new Scanner(System.in);
     int numDoorsInt = numDoorsScan.nextInt();
@@ -577,6 +617,9 @@ public class Company implements Serializable {
   
   public Payment createPayment() {
     Payment tempPayment = new Payment();
+    System.out.println("");
+    System.out.println("You are now creating a new payment method");
+    System.out.println("");
     System.out.println("Please select a card type.");
     System.out.println("0) Debit");
     System.out.println("1) Credit");
@@ -622,6 +665,7 @@ public class Company implements Serializable {
   }//end createPayment
  
   public void addLocation() {
+    System.out.println("");
     System.out.println("What is the name of the new location?");
     Scanner locationNameScan = new Scanner(System.in);
     String locationNameStr = locationNameScan.nextLine();
@@ -631,10 +675,12 @@ public class Company implements Serializable {
     tempLocation.setName(locationNameStr);
     tempLocation.setAddress(tempAddress);
     locations.add(tempLocation);
+    System.out.println("");
     saveData();
   }//end addLocation
   
   public void deleteLocation() {
+    System.out.println("");
     System.out.println("What is the name of the location?");
     Scanner locationNameScan = new Scanner(System.in);
     String locationNameStr = locationNameScan.nextLine();
@@ -656,19 +702,23 @@ public class Company implements Serializable {
         System.out.println("Searching...");
       }//end search conditionals
     }//end for loop iterating through locations
+    System.out.println("");
     saveData();
   }//end deleteLocation
   
   public void addVehicle() {
+    System.out.println("");
     System.out.println("What location will this vehicle be added to?");
     Location tempLocation = getLocation();
     Vehicle tempVehicle = createVehicle();
     tempVehicle.setOwnLocation(tempLocation);
     tempLocation.addVehicleInv(tempVehicle);
+    System.out.println("");
     saveData();
   }//end addVehicle
   
   public void deleteVehicle() {
+    System.out.println("");
     System.out.println("What location has the vehicle?");
     Location tempLocation = getLocation();
     System.out.println("Select which vehicle you wish to delete. Please enter the number at the start of the listing");
@@ -678,11 +728,13 @@ public class Company implements Serializable {
     System.out.println("Vehicle: " + tempLocation.getVehiclesOnLot().get(vehicleNumInt).listFullName() + " will be deleted.");
     tempLocation.deleteVehicleInv(vehicleNumInt);
     System.out.println("Vehicle deleted.");
+    System.out.println("");
     saveData();
   }//end deleteVehicle
   
   public void addCustomer() {
     Customer tempCustomer = new Customer();
+    System.out.println("");
     System.out.println("Customer Creation Interface");
     System.out.println("Please enter the customer's first name");
     Scanner custFNameScan = new Scanner(System.in);
@@ -702,17 +754,20 @@ public class Company implements Serializable {
     Payment tempPayment = createPayment();
     tempCustomer.setPaymentInfo(tempPayment);
     System.out.println("Customer successfully created");
+    System.out.println("");
     customers.add(tempCustomer);
     saveData();
   }//end addCustomer
     
   public void deleteCustomer() {
+    System.out.println("");
     System.out.println("Please select the customer below that you wish to delete.");
     listCustomers();
     Scanner custDeleteIndexScan = new Scanner(System.in);
     int custDeleteIndexInt = custDeleteIndexScan.nextInt();
     customers.remove(custDeleteIndexInt);
     System.out.println("Customer deleted");
+    System.out.println("");
     saveData();
   }//end deleteCustomer
   
