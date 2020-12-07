@@ -728,7 +728,7 @@ public class Company implements Serializable {
         if (locationDeleteFinalStr.toUpperCase().equals("Y")) {
           System.out.println("Location Deleted");
           locations.remove(locationDeleteIndex);
-        } else if (locationDeleteFinalStr.toUpperCase().equals("N")) {
+        } else if (locationDeleteFinalStr.toUpperCase.equals("N")) {
           System.out.println("Location will not be deleted.");
         } else {
           System.out.println("I'm sorry, that is not a recognized input. Please try again.");
