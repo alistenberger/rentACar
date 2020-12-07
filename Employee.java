@@ -3,7 +3,7 @@ import java.util.*;
 //Employee.java extends User abstract class
 //Employee class for operating program
 
-public class Employee extends User {
+public class Employee extends User implements Serializable {
   //Instance Variables 
   private String userName;
   private String password;
@@ -69,7 +69,7 @@ public class Employee extends User {
   } //end getType
   
   //end Class Methods
-  
+  /*
   //class Test
   public static int main(String[] args) {
     Employee newEmployee = new Employee("Person", "Employed", "emplPers", "DefaultPassword");
@@ -81,5 +81,5 @@ public class Employee extends User {
     return(0);
   } //end main
   //end class test
+  */
 } //end Employee
-

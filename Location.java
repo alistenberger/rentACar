@@ -3,7 +3,7 @@ import java.util.*;
 //Location.java
 //Location class to function as individual business objects
 
-public class Location {
+public class Location extends Company implements Serializable {
   //Instance Variables
   protected ArrayList<Employee> employees;
   protected ArrayList<Vehicle> vehiclesOnLot;
@@ -21,6 +21,8 @@ public class Location {
     this.vehiclesOnLoan = new ArrayList<Vehicle>();
     this.name = "";
     this.address = new Address();
+    this.admin = new Admin();
+    this.user = null;
   }//end Null Constructor
 
   //Constructor
@@ -35,6 +37,8 @@ public class Location {
     this.vehiclesOnLoan = iVehiclesOnLoan;
     this.name = iName;
     this.address = iAddress;
+    this.admin = new Admin();
+    this.user = null;
   }//end Constructor
   
   public void setEmployees(ArrayList<Employee> newEmployees) {
@@ -101,5 +105,16 @@ public class Location {
       + " " + vehicle.getModel());
     }//end for
   }//end listRentedVehicles
+  
+  public void addVehicleInv(Vehicle newVehicle) {
+    vehiclesOnLot.add(newVehicle);
+  }//end addVehicleInv
+  
+  public void addEmployeeLoc(Employee newEmployee) {
+    employees.add(newEmployee);
+  }//end addEmployeeLoc
+  
+  public void deleteVehicleInv(int i) {
+    vehiclesOnLot.remove(i);
+  }//end deleteVehicleInv
 }//end Location
-

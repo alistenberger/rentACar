@@ -3,7 +3,7 @@ import java.util.*;
 //Vehicle.java
 //Vehicle class for vehicle inventory
 
-public class Vehicle {
+public class Vehicle implements Serializable {
   //Instance Variables
   protected double costPerDay;
   protected int numPassengers;
@@ -22,7 +22,18 @@ public class Vehicle {
   //Class Methods
   //Null Constructor
   public Vehicle() {
-
+    this.costPerDay = 50;
+    this.numPassengers = 0;
+    this.odometer = 0;
+    this.numDoors = 0;
+    this.costInsurance = 50;
+    this.ownLocation = null;
+    this.checkedOutBy = null;
+    this.dateRented = null;
+    this.daysRented = 0;
+    this.year = null;
+    this.make = null;
+    this.model = null;
   } //end Null Constructor
   
   //Constructor
@@ -148,8 +159,14 @@ public class Vehicle {
   public String getModel() {
     return this.model;
   } //end getModel
+  
+  public String listFullName() {
+    String fullVehicleName = getYear() + " " +getMake() + " " + getModel();
+    return fullVehicleName;
+  }//end listFullName
   //end Class Methods
   
+  /*
   //Class Test
   public static void main(String[] args) {
     Location testLocation = new Location();
@@ -177,4 +194,5 @@ public class Vehicle {
     System.out.println("Card Number: " + testVehicle.getCheckedOutBy().getPaymentInfo().getCardNumber());
   } //end main
   //end Class Test
+  */
 } //end Vehicle

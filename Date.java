@@ -3,7 +3,7 @@ import java.util.*;
 //Date.java
 //Date class for various uses
 
-public class Date {
+public class Date implements Serializable {
   //Instance Variables 
   private int month;
   private int day;
@@ -49,6 +49,7 @@ public class Date {
     return this.year;
   } //end getYear
   //end Class Methods
+  /*
 //class test
   public static int main(String[] args) {
     Date birthDate = new Date(11, 9, 1991);
@@ -65,5 +66,5 @@ public class Date {
     birthDate.getYear();
     return(0);
   } //end Main
+  */
 } //end Date
-

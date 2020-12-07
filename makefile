@@ -24,4 +24,7 @@ TypeCard.class: TypeCard.java
 	javac -g TypeCard.java
 clean:
 	rm *.class
-
+run: Company.class
+	java Company
+debug: Company.class
+	jdb Company

@@ -3,7 +3,7 @@ import java.util.*;
 //Address.java
 //Address class for use in tracking customer addresses
 
-public class Address {
+public class Address implements Serializable {
   //Instance Variables
   private String address1;
   private String address2;
@@ -72,7 +72,7 @@ public class Address {
   } //end getZip
   
   //end Class Methods
-  
+  /*
   //class Test
   public static int main(String[] args) {
     Address customerAddress = new Address("555 Fake Street", "", "Fakesville", "IN", "46069");
@@ -83,6 +83,6 @@ public class Address {
     customerAddress.getZip();
     return(0);
   } //end main
+  */
   //end class test
 } //end Address
-

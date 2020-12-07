@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 //Customer.java
 //Customer class
-public class Customer extends User {
+public class Customer extends User implements Serializable {
   //Instance Variables
   private Date dob;
   private Address address;
@@ -83,11 +83,11 @@ public class Customer extends User {
     return this.lateReturn;
   } //end getLateReturn
   
-  public void setVehicleRented(Vehicle newVehicleRented) {
+  public void setVehicleRented(Vehicle newVehicleRented) { 
     this.vehicleRented = newVehicleRented;
   } //end setVehicleRented
   
-  public Vehicle getVehicleRented() {
+  public Vehicle getVehicleRented() { 
     return this.vehicleRented;
   } //end getVehicleRented
   
@@ -115,4 +115,3 @@ public class Customer extends User {
     return this.rentDate;
   } //end getRentDate
 }//end Customer
-

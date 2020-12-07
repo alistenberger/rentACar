@@ -3,7 +3,7 @@ import java.util.*;
 //Payment.java
 //Payment class to store payment information
 
-public class Payment {
+public class Payment implements Serializable {
   //Instance Variables
   private TypeCard cardType;
   private BrandCard cardBrand;
@@ -78,4 +78,3 @@ public class Payment {
   }//end getNameOnCard
   //end class methods
 } //end Payment
-

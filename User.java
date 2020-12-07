@@ -3,7 +3,7 @@ import java.util.*;
 //User.java
 //Abstract User class
 
-public abstract class User {
+public abstract class User implements Serializable {
   
   //Instance variables
   protected String lName;
@@ -16,6 +16,14 @@ public abstract class User {
     this.lName = lastName;
     this.fName = firstName;
   } //end set name
+  
+  public void setLName(String newLName) {
+    this.lName = newLName;
+  }//end setLName
+  
+  public void setFName(String newFName) {
+    this.fName = newFName;
+  }//end setFName
   
   public String getFirstName() {
     return this.fName;
