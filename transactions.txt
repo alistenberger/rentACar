@@ -19,3 +19,17 @@ Vehicle: 2010 Dodge Challenger
 Customer: McCustomer, 0
 **************END TRANSACTION***************
 
+**************NEW TRANSACTION***************
+Transaction Type: out
+Employee: slistenberger
+Vehicle: 2015 Nissan Rogue
+Customer: Customerton, George
+**************END TRANSACTION***************
+
+**************NEW TRANSACTION***************
+Transaction Type: in
+Employee: slistenberger
+Vehicle: 2015 Nissan Rogue
+Customer: Customerton, George
+**************END TRANSACTION***************
+
